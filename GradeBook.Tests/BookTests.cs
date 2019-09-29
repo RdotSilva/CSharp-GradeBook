@@ -24,5 +24,21 @@ namespace GradeBook.Tests
             Assert.Equal(77.3, result.Low, 1);
 
         }
+
+        [Fact]
+        public void AddedGradeIsBetween0And100()
+        {
+            var book = new Book("");
+            book.AddGrade(100);
+            book.AddGrade(0);
+            book.AddGrade(101);
+            book.AddGrade(-1);
+
+            var result = book.GetStatistics();
+
+            Assert.Equal(0, result.Low);
+            Assert.Equal(100, result.High);
+            Assert.Equal(50, result.Average);
+        }
     }
 }
