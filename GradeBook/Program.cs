@@ -11,10 +11,22 @@ namespace GradeBook
 
             var book = new Book("Ryan's Grade Book");
 
-            book.AddGrade(89.1);
-            book.AddGrade(90.5);
-            book.AddGrade(77.5);
+            while (true)
+            {
+                Console.WriteLine("Enter a grade or type 'q' to quit.");
+                var input = Console.ReadLine();
 
+                if (input == "q")
+                {
+                    break;
+                }
+                else
+                {
+                    book.AddGrade(double.Parse(input));
+                }
+                
+            }
+            
             var stats = book.GetStatistics();
 
             Console.WriteLine($"The lowest grade is {stats.Low}");
