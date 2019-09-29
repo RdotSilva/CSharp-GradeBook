@@ -20,9 +20,23 @@ namespace GradeBook
                 {
                     break;
                 }
-                else
+
+                try
                 {
+
                     book.AddGrade(double.Parse(input));
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                catch (FormatException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    Console.WriteLine("**");
                 }
                 
             }
