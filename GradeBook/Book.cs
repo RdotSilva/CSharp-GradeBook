@@ -13,19 +13,27 @@ namespace GradeBook
         event GradeAddedDelegate GradeAdded;
     }
 
-    public abstract class BookBase : NamedObject
+    public abstract class BookBase : NamedObject, IBook
     {
-        protected BookBase(string name) : base(name)
+        public BookBase(string name) : base(name)
         {
         }
 
+        public virtual event GradeAddedDelegate GradeAdded;
+
         public abstract void AddGrade(double grade);
 
+        public virtual Statistics GetStatistics()
+        {
+            throw new NotImplementedException();
+        }
+
+        
     }
 
-    public class Book : BookBase
+    public class InMemoryBook : BookBase
     {
-        public Book(string name) : base(name)
+        public InMemoryBook(string name) : base(name)
         {
             grades = new List<double>();
             Name = name;
@@ -71,9 +79,9 @@ namespace GradeBook
             }
         }
 
-        public event GradeAddedDelegate GradeAdded;
+        public override event GradeAddedDelegate GradeAdded;
 
-        public Statistics GetStatistics()
+        public override Statistics GetStatistics()
         {
             var result = new Statistics();
             result.Average = 0.0;
