@@ -9,9 +9,8 @@ namespace GradeBook
         static void Main(string[] args)
         {
 
-            BookBase book = new DiskBook("Disk Book Test");
+            BookBase book = new InMemoryBook("Ryan's Grade Book");
 
-            book.AddGrade(90.5);
 
             EnterGrades(book);
             
